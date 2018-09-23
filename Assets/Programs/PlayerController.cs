@@ -65,7 +65,6 @@ public class PlayerController : MonoBehaviour {
     public float GetPercentageMoved()
     {
         PercentageMoved = (gameObject.transform.position.z + Zlimite) / (2 * Zlimite) *100;
-        print(PercentageMoved);
         return PercentageMoved;
     }
 }
