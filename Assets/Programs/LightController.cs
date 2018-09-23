@@ -7,10 +7,11 @@ public class LightController : MonoBehaviour {
     private bool playerInRange = false;
     private GameObject player;
     private Light luz;
-
+    
     //Publicas
     public float velocidadeInicial = 1f;
     public float aceleration;
+    public Animator animation;
 
     //Variaveis auxiliaress
     private Vector3 InicialPosition;
@@ -37,6 +38,7 @@ public class LightController : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {    
         if(other.tag == "Player") {
             playerInRange = true;
+            animation.SetTrigger("AtivarFade");
         }
     }
 
