@@ -5,9 +5,11 @@ using UnityEngine;
 public class SoundController : MonoBehaviour {
 
     //Variáveis para reproduzir effeitos sonoros
+    private AudioSource EffectSource;
     public GameObject EffectsPlayer;
     public AudioClip Effect0;
     public AudioClip Effect1;
+    public AudioClip Effect2;
 
     //Variáveis para reproduzir sons ambiente
     public AudioClip Track0;
@@ -23,10 +25,17 @@ public class SoundController : MonoBehaviour {
         AudioSource = gameObject.GetComponent<AudioSource>();
         Player = GameObject.FindWithTag("Player");
         AudioSource.priority = 0;   //Prioridade do som de fundo ao máximo
+        EffectSource = EffectsPlayer.GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
 	void Update () {
+        if(Input.GetKey("q"))
+        {
+            print("ola");
+            PlayEffect((int)Mathf.Floor(Random.Range(0, 3)));
+        }
+
 		if(Player.GetComponent<PlayerController>().GetPercentageMoved()<= 25 && !AudioSource.isPlaying)         //Dependendo da porcentagem de caminho deslocado altera qual música entra em loop
         {
             AudioSource.clip = Track0;
@@ -46,6 +55,25 @@ public class SoundController : MonoBehaviour {
         {
             AudioSource.clip = Track3;
             AudioSource.Play();
+        }
+    }
+
+    public void PlayEffect(int EffectNumber)
+    {
+        if(EffectNumber == 0 && !EffectSource.isPlaying)
+        {
+            EffectSource.clip = Effect0;
+            EffectSource.Play();
+        }
+        else if(EffectNumber == 1 && !EffectSource.isPlaying)
+        {
+            EffectSource.clip = Effect1;
+            EffectSource.Play();
+        }
+        else if(!EffectSource.isPlaying)
+        {
+            EffectSource.clip = Effect2;
+            EffectSource.Play();
         }
     }
 }
