@@ -3143,9 +3143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EffectsPlayer: {fileID: 1800242362}
-  Effect0: {fileID: 8300000, guid: 971197c2f357b65459df567a21bc4f6f, type: 3}
-  Effect1: {fileID: 8300000, guid: 2dbfa216478bdad40a9d1f1ffe2d099d, type: 3}
-  Effect2: {fileID: 8300000, guid: 971197c2f357b65459df567a21bc4f6f, type: 3}
+  Effect0: {fileID: 8300000, guid: 5b2932a4ff1968d42981d3322867dc05, type: 3}
+  Effect1: {fileID: 8300000, guid: 0604f53db3f3c104a810934bdeca3bbd, type: 3}
+  Effect2: {fileID: 8300000, guid: 524c9c391d5df9a489897ce863271b13, type: 3}
   Track0: {fileID: 8300000, guid: 20f6d8189dc654047a07e70de238a703, type: 3}
   Track1: {fileID: 8300000, guid: cca43af895ba4cd4d8f4b91256d5cc30, type: 3}
   Track2: {fileID: 8300000, guid: 20f6d8189dc654047a07e70de238a703, type: 3}
@@ -3363,7 +3363,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2dbfa216478bdad40a9d1f1ffe2d099d, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
