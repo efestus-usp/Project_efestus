@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour {
             SeenFriend = false;
         }
 
+
+        //Movimenta o jogador
         Controller.Move(gameObject.transform.forward * CurrentSpeed * Time.deltaTime * Input.GetAxis("Vertical"));
         Controller.Move(gameObject.transform.right * CurrentSpeed * Time.deltaTime * Input.GetAxis("Horizontal"));
     }
