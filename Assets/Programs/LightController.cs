@@ -7,6 +7,7 @@ public class LightController : MonoBehaviour {
     private bool playerInRange = false;
     private GameObject player;
     private Light luz;
+    private DestuirLuz destruirLuz;
     
     //Publicas
     public float velocidadeInicial = 1f;
@@ -22,7 +23,8 @@ public class LightController : MonoBehaviour {
         luz = GetComponent<Light>();
         player = GameObject.FindGameObjectWithTag("Player");
         InicialPosition = this.transform.position;
-        multiplicador = velocidadeInicial   ;
+        multiplicador = velocidadeInicial;
+        destruirLuz = GameObject.FindGameObjectWithTag("Canvas").GetComponentInChildren<DestuirLuz>();
 	}
 	
 	void Update () {
@@ -31,7 +33,9 @@ public class LightController : MonoBehaviour {
         }
         //Quando estão perto o suficiente
         if (Vector3.Distance(transform.position, player.transform.position)< 0.1f) {
-            Destroy(this.gameObject);
+            if (destruirLuz.getJaBranco()) {
+                Destroy(this.gameObject);
+            }       
         }
 	}
 
@@ -50,6 +54,5 @@ public class LightController : MonoBehaviour {
         //Atualiza o multiplicador
         multiplicador = multiplicador + multiplicador * aceleration * Time.deltaTime;
     }
-
 
 }
