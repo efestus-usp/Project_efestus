@@ -6018,6 +6018,7 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
+  - component: {fileID: 534669906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Untagged
@@ -6085,6 +6086,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &534669906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: e35f5b35424ce6a4480d55b03633b3d0, type: 2}
 --- !u!4 &536865007 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4366077351547454, guid: 4749ae23352a64f4eabfc464a328271a,
@@ -6135,7 +6148,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: be0948d0468b0114eb5d3aede4dede05, type: 2}
+  - {fileID: 2100000, guid: 1074fd0e151c66b42b837ad150747689, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
