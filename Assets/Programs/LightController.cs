@@ -12,6 +12,7 @@ public class LightController : MonoBehaviour {
     //Publicas
     public float velocidadeInicial = 1f;
     public float aceleration;
+    public float tempoDeParada;
     public Animator animation;
 
     //Variaveis auxiliaress
@@ -30,10 +31,13 @@ public class LightController : MonoBehaviour {
 	void Update () {
         if (playerInRange) {
             seguirPlayer();
+            StartCoroutine(delayPausa(tempoDeParada));
         }
         //Quando estão perto o suficiente
         if (Vector3.Distance(transform.position, player.transform.position)< 0.1f) {
             if (destruirLuz.getJaBranco()) {
+                PlayerController Pc = player.GetComponent<PlayerController>();
+                Pc.setCurrentSpeed(Pc.Speed);
                 Destroy(this.gameObject);
             }       
         }
@@ -53,6 +57,19 @@ public class LightController : MonoBehaviour {
         luz.intensity = Mathf.Lerp(0, 1, multiplicador * Time.deltaTime);
         //Atualiza o multiplicador
         multiplicador = multiplicador + multiplicador * aceleration * Time.deltaTime;
+    }
+
+    IEnumerator delayPausa(float delay)
+    {
+        PlayerController Pc = player.GetComponent<PlayerController>();
+        for (int i = 0; i <20; i++)
+        {
+            yield return new WaitForSeconds(delay/20);
+            Pc.setCurrentSpeed(Mathf.Lerp(Pc.Speed,0,i/20f));
+        }
+        
+        
+        
     }
 
 }

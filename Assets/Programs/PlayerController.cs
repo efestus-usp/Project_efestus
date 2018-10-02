@@ -60,11 +60,16 @@ public class PlayerController : MonoBehaviour {
             SeenFriend = false;
         }
 
-        print(gameObject.transform.position.y);
+        print(CurrentSpeed);
 
         //Movimenta o jogador
         Controller.Move(gameObject.transform.forward * CurrentSpeed * Time.deltaTime * Input.GetAxis("Vertical"));
         Controller.Move(gameObject.transform.right * CurrentSpeed * Time.deltaTime * Input.GetAxis("Horizontal"));
+    }
+
+    public void setCurrentSpeed(float cS)
+    {
+        CurrentSpeed = cS;
     }
 
     public float GetPercentageMoved()    //Função que retorna a porcentagem de deslocamento do jogador em relação ao mapa
