@@ -36,17 +36,17 @@ public class SoundController : MonoBehaviour {
             PlayEffect((int)Mathf.Floor(Random.Range(0, 3)));
         }
 
-		if(Player.GetComponent<PlayerController>().GetPercentageMoved()<= 25 && !AudioSource.isPlaying)         //Dependendo da porcentagem de caminho deslocado altera qual música entra em loop
+		if(Player.GetComponent<PlayerController>().getPercentageMoved()<= 25 && !AudioSource.isPlaying)         //Dependendo da porcentagem de caminho deslocado altera qual música entra em loop
         {
             AudioSource.clip = Track0;
             AudioSource.Play();
         }
-        else if(Player.GetComponent<PlayerController>().GetPercentageMoved() <= 50 && !AudioSource.isPlaying)   //50%
+        else if(Player.GetComponent<PlayerController>().getPercentageMoved() <= 50 && !AudioSource.isPlaying)   //50%
         {
             AudioSource.clip = Track1;
             AudioSource.Play();
         }
-        else if (Player.GetComponent<PlayerController>().GetPercentageMoved() <= 75 && !AudioSource.isPlaying)  //75%
+        else if (Player.GetComponent<PlayerController>().getPercentageMoved() <= 75 && !AudioSource.isPlaying)  //75%
         {
             AudioSource.clip = Track2;
             AudioSource.Play();

@@ -5,6 +5,7 @@ using UnityEngine;
 public class LightController : MonoBehaviour {
     //Privadas
     private bool playerInRange = false;
+    private bool reduzirVelocidade = true;
     private GameObject player;
     private Light luz;
     private DestuirLuz destruirLuz;
@@ -12,7 +13,6 @@ public class LightController : MonoBehaviour {
     //Publicas
     public float velocidadeInicial = 1f;
     public float aceleration;
-    public float tempoDeParada;
     public Animator animation;
 
     //Variaveis auxiliaress
@@ -31,13 +31,16 @@ public class LightController : MonoBehaviour {
 	void Update () {
         if (playerInRange) {
             seguirPlayer();
-            StartCoroutine(delayPausa(tempoDeParada));
+            if (reduzirVelocidade)
+            {
+                player.GetComponent<PlayerController>().reduzirVelocidade();
+                reduzirVelocidade = false;
+            }
         }
         //Quando estão perto o suficiente
         if (Vector3.Distance(transform.position, player.transform.position)< 0.1f) {
             if (destruirLuz.getJaBranco()) {
-                PlayerController Pc = player.GetComponent<PlayerController>();
-                Pc.setCurrentSpeed(Pc.Speed);
+                player.GetComponent<PlayerController>().aumentarVelocidade();
                 Destroy(this.gameObject);
             }       
         }
@@ -58,18 +61,4 @@ public class LightController : MonoBehaviour {
         //Atualiza o multiplicador
         multiplicador = multiplicador + multiplicador * aceleration * Time.deltaTime;
     }
-
-    IEnumerator delayPausa(float delay)
-    {
-        PlayerController Pc = player.GetComponent<PlayerController>();
-        for (int i = 0; i <20; i++)
-        {
-            yield return new WaitForSeconds(delay/20);
-            Pc.setCurrentSpeed(Mathf.Lerp(Pc.Speed,0,i/20f));
-        }
-        
-        
-        
-    }
-
 }

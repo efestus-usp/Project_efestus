@@ -72,9 +72,38 @@ public class PlayerController : MonoBehaviour {
         CurrentSpeed = cS;
     }
 
-    public float GetPercentageMoved()    //Função que retorna a porcentagem de deslocamento do jogador em relação ao mapa
+    public float getPercentageMoved()    //Função que retorna a porcentagem de deslocamento do jogador em relação ao mapa
     {
         PercentageMoved = (gameObject.transform.position.z + Zlimite) / (2 * Zlimite) *100;
         return PercentageMoved;
+    }
+
+    public void reduzirVelocidade()
+    {
+        StartCoroutine(delayPausa(tempoDeParada));
+    }
+
+    public void aumentarVelocidade()
+    {
+        StartCoroutine(delayAceleracao(tempoDeAceleracao));
+    }
+
+
+    public IEnumerator delayPausa(float delay)
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            yield return new WaitForSeconds(delay / 20);
+            setCurrentSpeed(Mathf.Lerp(Speed, 0, i / 20f));
+        }
+    }
+
+    public IEnumerator delayAceleracao(float delay)
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            yield return new WaitForSeconds(delay / 20);
+            setCurrentSpeed(Mathf.Lerp(0,Speed, i / 20f));
+        }
     }
 }
