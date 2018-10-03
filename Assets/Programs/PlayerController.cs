@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour {
     public float Range;                             //A distância em que o jogador consegue identificar um novo item
     public float Xlimite;                           //Os limite laterais em que o jogador pode se locomover
     public float Zlimite;                           //Os limite longitudinais em que o jogador pode se locomover
-    
+    public float tempoDeAceleracao;
+    public float tempoDeParada;
     
     // Use this for initialization
     void Start () {
@@ -60,8 +61,6 @@ public class PlayerController : MonoBehaviour {
             SeenFriend = false;
         }
 
-        print(CurrentSpeed);
-
         //Movimenta o jogador
         Controller.Move(gameObject.transform.forward * CurrentSpeed * Time.deltaTime * Input.GetAxis("Vertical"));
         Controller.Move(gameObject.transform.right * CurrentSpeed * Time.deltaTime * Input.GetAxis("Horizontal"));
@@ -100,7 +99,7 @@ public class PlayerController : MonoBehaviour {
 
     public IEnumerator delayAceleracao(float delay)
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i <= 20; i++)
         {
             yield return new WaitForSeconds(delay / 20);
             setCurrentSpeed(Mathf.Lerp(0,Speed, i / 20f));

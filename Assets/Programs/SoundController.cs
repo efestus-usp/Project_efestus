@@ -5,75 +5,172 @@ using UnityEngine;
 public class SoundController : MonoBehaviour {
 
     //Variáveis para reproduzir effeitos sonoros
-    private AudioSource EffectSource;
-    public GameObject EffectsPlayer;
-    public AudioClip Effect0;
-    public AudioClip Effect1;
-    public AudioClip Effect2;
+    private AudioSource effectSource;
+    public GameObject effectsPlayer;
+    public AudioClip effect0;
+    public AudioClip effect1;
+    public AudioClip effect2;
 
     //Variáveis para reproduzir sons ambiente
-    public AudioClip Track0;
-    public AudioClip Track1;
-    public AudioClip Track2;
-    public AudioClip Track3;
-    private AudioSource AudioSource;
-    
+    public GameObject secondSoundPlayer;
+    public AudioClip track0;
+    public AudioClip track1;
+    public AudioClip track2;
+    public AudioClip track3;
+    private AudioClip nextTrack;
+    private AudioSource audioSource1;
+    private AudioSource audioSource2;
+    private bool switchTracks = false;
+    private bool isPlaying = false;
+    private float nextTrackTimer;
+
+    //Constantes de tempo para o fade in / fade out dos audios
+    //Para o loop
+    const float timerTrack0To0 = 5.22f;
+    const float timerTrack1To1 = 24.43f;
+    const float timerTrack2To2 = 8.2f;
+    const float timerTrack3To3 = 7.1f;
+    const float timerTrack4To4 = 9.55f;
+    const float timerTrack5To5 = 9.36f;
+    const float timerTrack6To6 = 5.82f;
+    const float timerTrack7To7 = 9.96f;
+    const float timerTrack8To8 = 12.83f;
+    const float timerTrack9To9 = 10.51f;
+    const float timerTrack10To10 = 37.6f;
+
+    //Para a próxima faixa
+    const float timerTrack0To1 = 5.5f;
+    const float timerTrack1To2 = 25.34f;
+    const float timerTrack2To3 = 8.81f;
+    const float timerTrack3To4 = 7.15f;
+    const float timerTrack4To5 = 9.40f;
+    const float timerTrack5To6 = 9.53f;
+    const float timerTrack6To7 = 5.27f;
+    const float timerTrack7To8 = 9.96f;
+    const float timerTrack8To9 = 12.3f;
+    const float timerTrack9To10 = 10.27f;
+
     private GameObject Player;      //O jogador
 
 
     void Start () {
-        AudioSource = gameObject.GetComponent<AudioSource>();
+        audioSource1 = gameObject.GetComponent<AudioSource>();
+        audioSource2 = secondSoundPlayer.GetComponent<AudioSource>();
         Player = GameObject.FindWithTag("Player");
-        AudioSource.priority = 0;   //Prioridade do som de fundo ao máximo
-        EffectSource = EffectsPlayer.GetComponent<AudioSource>();
+        audioSource1.priority = 0;   //Prioridade do som de fundo ao máximo
+        effectSource = effectsPlayer.GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
 	void Update () {
         if(Input.GetKey("q"))
         {
-            print("ola");
             PlayEffect((int)Mathf.Floor(Random.Range(0, 3)));
         }
 
-		if(Player.GetComponent<PlayerController>().getPercentageMoved()<= 25 && !AudioSource.isPlaying)         //Dependendo da porcentagem de caminho deslocado altera qual música entra em loop
+        AudioSource activeSource = wichSourceIsPlaying();
+
+        if (Player.GetComponent<PlayerController>().getPercentageMoved()<= 25 && !isPlaying)          //Dependendo da porcentagem de caminho deslocado altera qual música entra em loop
         {
-            AudioSource.clip = Track0;
-            AudioSource.Play();
+            nextTrack = track0;
+            StartCoroutine(timerToSwitch(timerTrack0To0));
         }
-        else if(Player.GetComponent<PlayerController>().getPercentageMoved() <= 50 && !AudioSource.isPlaying)   //50%
+        else if(Player.GetComponent<PlayerController>().getPercentageMoved() <= 50 && !isPlaying)     //50%
         {
-            AudioSource.clip = Track1;
-            AudioSource.Play();
+            nextTrack = track1;
+            if(activeSource.clip.Equals(nextTrack))
+            {
+                StartCoroutine(timerToSwitch(timerTrack1To1));
+            }
+            else
+            {
+                StartCoroutine(timerToSwitch(timerTrack1To2));
+            }
+            
         }
-        else if (Player.GetComponent<PlayerController>().getPercentageMoved() <= 75 && !AudioSource.isPlaying)  //75%
+        else if (Player.GetComponent<PlayerController>().getPercentageMoved() <= 75 && !isPlaying)    //75%
         {
-            AudioSource.clip = Track2;
-            AudioSource.Play();
+            nextTrack = track2;
+            if (activeSource.clip.Equals(nextTrack))
+            {
+                StartCoroutine(timerToSwitch(timerTrack2To2));
+            }
+            else
+            {
+                StartCoroutine(timerToSwitch(timerTrack2To3));
+            }
         }
-        else if (!AudioSource.isPlaying)                                                                        //100%
-        {
-            AudioSource.clip = Track3;
-            AudioSource.Play();
+        else if(!isPlaying)                                                                             //100%
+        {                                                                         
+            nextTrack = track3;
+            if (activeSource.clip.Equals(nextTrack))
+            {
+                StartCoroutine(timerToSwitch(timerTrack3To3));
+            }
+            else
+            {
+                StartCoroutine(timerToSwitch(timerTrack3To4));
+            }
         }
     }
 
     public void PlayEffect(int EffectNumber)
     {
-        if(EffectNumber == 0 && !EffectSource.isPlaying)
+        if(EffectNumber == 0 && !effectSource.isPlaying)
         {
-            EffectSource.clip = Effect0;
-            EffectSource.Play();
+            effectSource.clip = effect0;
+            effectSource.Play();
         }
-        else if(EffectNumber == 1 && !EffectSource.isPlaying)
+        else if(EffectNumber == 1 && !effectSource.isPlaying)
         {
-            EffectSource.clip = Effect1;
-            EffectSource.Play();
+            effectSource.clip = effect1;
+            effectSource.Play();
         }
-        else if(!EffectSource.isPlaying)
+        else if(!effectSource.isPlaying)
         {
-            EffectSource.clip = Effect2;
-            EffectSource.Play();
+            effectSource.clip = effect2;
+            effectSource.Play();
         }
+    }
+
+    IEnumerator timerToSwitch(float delay)
+    {
+        isPlaying = true;
+        yield return new WaitForSeconds(delay);
+        isPlaying = false;
+        if(switchTracks)
+        {
+            audioSource2.clip = nextTrack;
+            audioSource2.Play();
+            switchTracks = false;
+        }
+        else
+        {
+            audioSource1.clip = nextTrack;
+            audioSource1.Play();
+            switchTracks = true;
+        }
+    }
+
+    public AudioSource wichSourceIsPlaying()
+    {
+        if(audioSource1.isPlaying)
+        {
+            if (audioSource2.isPlaying)
+            {
+                if (audioSource1.time > audioSource2.time)
+                {
+                    return audioSource2;
+                }
+                else return audioSource1;
+            }
+            else return audioSource1;
+        }
+        else if(audioSource2.isPlaying)
+        {
+            return audioSource2;
+        }
+
+        return null;
     }
 }
