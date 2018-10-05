@@ -73,10 +73,12 @@ public class SoundController : MonoBehaviour {
         if (Player.GetComponent<PlayerController>().getPercentageMoved()<= 25 && !isPlaying)          //Dependendo da porcentagem de caminho deslocado altera qual música entra em loop
         {
             nextTrack = track0;
+            print("ola");
             StartCoroutine(timerToSwitch(timerTrack0To0));
         }
         else if(Player.GetComponent<PlayerController>().getPercentageMoved() <= 50 && !isPlaying)     //50%
         {
+            print("opa");
             nextTrack = track1;
             if(activeSource.clip.Equals(nextTrack))
             {
@@ -84,7 +86,7 @@ public class SoundController : MonoBehaviour {
             }
             else
             {
-                StartCoroutine(timerToSwitch(timerTrack1To2));
+                StartCoroutine(timerToSwitch(timerTrack0To1));
             }
             
         }
@@ -97,7 +99,7 @@ public class SoundController : MonoBehaviour {
             }
             else
             {
-                StartCoroutine(timerToSwitch(timerTrack2To3));
+                StartCoroutine(timerToSwitch(timerTrack1To2));
             }
         }
         else if(!isPlaying)                                                                             //100%
@@ -109,7 +111,7 @@ public class SoundController : MonoBehaviour {
             }
             else
             {
-                StartCoroutine(timerToSwitch(timerTrack3To4));
+                StartCoroutine(timerToSwitch(timerTrack2To3));
             }
         }
     }
@@ -141,11 +143,13 @@ public class SoundController : MonoBehaviour {
         if(switchTracks)
         {
             audioSource2.clip = nextTrack;
+            print("tocando source 2");
             audioSource2.Play();
             switchTracks = false;
         }
         else
         {
+            print("tocando clip 1");
             audioSource1.clip = nextTrack;
             audioSource1.Play();
             switchTracks = true;
