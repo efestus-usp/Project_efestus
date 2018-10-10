@@ -109,10 +109,10 @@ MonoBehaviour:
         texture: {fileID: 0}
         intensity: 3
   colorGrading:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       tonemapping:
-        tonemapper: 0
+        tonemapper: 2
         neutralBlackIn: 0.02
         neutralWhiteIn: 10
         neutralBlackOut: 0
@@ -121,10 +121,10 @@ MonoBehaviour:
         neutralWhiteClip: 10
       basic:
         postExposure: 0
-        temperature: 1
+        temperature: 0
         tint: 0
         hueShift: 0
-        saturation: 1.26
+        saturation: 1
         contrast: 1
       channelMixer:
         red: {x: 1, y: 0, z: 0}
@@ -132,15 +132,15 @@ MonoBehaviour:
         blue: {x: 0, y: 0, z: 1}
         currentEditingChannel: 0
       colorWheels:
-        mode: 0
+        mode: 1
         log:
-          slope: {r: 1, g: 0.3575455, b: 0.6513581, a: 0}
-          power: {r: 0, g: 0.22715902, b: 1, a: 0}
-          offset: {r: 0.9067986, g: 0.8135963, b: 1, a: 0}
+          slope: {r: 0.3470013, g: 0.70851344, b: 1, a: 0}
+          power: {r: 0.09054661, g: 0, b: 1, a: 0}
+          offset: {r: 0.92901134, g: 1, b: 0, a: 0}
         linear:
-          lift: {r: 1, g: 1, b: 1, a: 0}
-          gamma: {r: 1, g: 1, b: 1, a: 0}
-          gain: {r: 1, g: 1, b: 1, a: 0}
+          lift: {r: 0, g: 0, b: 0, a: 0}
+          gamma: {r: 0, g: 0, b: 0, a: 0}
+          gain: {r: 0, g: 0, b: 0, a: 0}
       curves:
         master:
           curve:
@@ -156,10 +156,10 @@ MonoBehaviour:
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
-              time: 0.23404256
-              value: 0.75
-              inSlope: -0
-              outSlope: -0
+              time: 1
+              value: 1
+              inSlope: 1
+              outSlope: 1
               tangentMode: 0
               weightedMode: 0
               inWeight: 0
@@ -184,19 +184,10 @@ MonoBehaviour:
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
-              time: 0.27659574
-              value: 0.6944444
+              time: 1
+              value: 1
               inSlope: 1
               outSlope: 1
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.8425532
-              value: 0.5555556
-              inSlope: 0
-              outSlope: 0
               tangentMode: 0
               weightedMode: 0
               inWeight: 0
@@ -221,19 +212,10 @@ MonoBehaviour:
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
-              time: 0.3319149
-              value: 0.4166667
-              inSlope: -4.9735494
-              outSlope: -4.9735494
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.6297872
-              value: 0.8888889
-              inSlope: 0
-              outSlope: 0
+              time: 1
+              value: 1
+              inSlope: 1
+              outSlope: 1
               tangentMode: 0
               weightedMode: 0
               inWeight: 0
@@ -314,9 +296,9 @@ MonoBehaviour:
           m_Range: 1
         e_CurrentEditingCurve: 0
         e_CurveY: 1
-        e_CurveR: 1
-        e_CurveG: 1
-        e_CurveB: 1
+        e_CurveR: 0
+        e_CurveG: 0
+        e_CurveB: 0
   userLut:
     m_Enabled: 0
     m_Settings:
