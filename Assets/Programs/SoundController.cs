@@ -29,19 +29,20 @@ public class SoundController : MonoBehaviour {
     private bool switchTracks = false;
     private bool isPlaying = false;
     private float nextTrackTimer;
+    private int currentTrackNumber;
 
     //Constantes de tempo para o fade in / fade out dos audios
     //Para o loop
-    const float timerTrack0To0 = 5.22f;
-    const float timerTrack1To1 = 8.2f;
-    const float timerTrack2To2 = 8.2f;
-    const float timerTrack3To3 = 9.55f;
-    const float timerTrack4To4 = 9.36f;
-    const float timerTrack5To5 = 5.82f;
-    const float timerTrack6To6 = 9.96f;
-    const float timerTrack7To7 = 12.83f;
-    const float timerTrack8To8 = 10.51f;
-    const float timerTrack9To9 = 37.6f;
+    const float timerTrack0To0 = 5.22f; //75
+    const float timerTrack1To1 = 8.2f;  //75
+    const float timerTrack2To2 = 7.1f;  //75
+    const float timerTrack3To3 = 9.55f; //50
+    const float timerTrack4To4 = 9.36f; //50
+    const float timerTrack5To5 = 5.82f; //75
+    const float timerTrack6To6 = 9.96f; //50
+    const float timerTrack7To7 = 12.83f;//63
+    const float timerTrack8To8 = 10.51f;//52
+    const float timerTrack9To9 = 37.6f;//210
     //const float timerTrack10To10 = 37.6f;
 
     //Para a próxima faixa
@@ -64,6 +65,7 @@ public class SoundController : MonoBehaviour {
         Player = GameObject.FindWithTag("Player");
         audioSource1.priority = 0;   //Prioridade do som de fundo ao máximo
         effectSource = effectsPlayer.GetComponent<AudioSource>();
+        currentTrackNumber = -1;
     }
 	
 	// Update is called once per frame
@@ -75,50 +77,134 @@ public class SoundController : MonoBehaviour {
 
         AudioSource activeSource = wichSourceIsPlaying();
 
-        if (Player.GetComponent<PlayerController>().getPercentageMoved()<= 25 && !isPlaying)          //Dependendo da porcentagem de caminho deslocado altera qual música entra em loop
+        if(!isPlaying)
         {
-            nextTrack = track0;
-            print("ola");
-            StartCoroutine(timerToSwitch(timerTrack0To0));
+            print("Tocando " + currentTrackNumber);
+            switch (currentTrackNumber)
+            {
+                case 0:
+                    if(audioSource1.clip == null)
+                    {
+                        audioSource1.clip = track0;
+                        audioSource1.Play();
+                    }
+                    nextTrack = track0;
+                    StartCoroutine(timerToSwitch(timerTrack0To0));
+                    print("Tocando " + currentTrackNumber);
+                    break;
+
+                case 1:
+                    nextTrack = track1;
+                    if (activeSource.clip.Equals(nextTrack))
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack1To1));
+                    }
+                    else
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack0To1));
+                    }
+                    break;
+
+                case 2:
+                    nextTrack = track2;
+                    if (activeSource.clip.Equals(nextTrack))
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack2To2));
+                    }
+                    else
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack1To2));
+                    }
+                    break;
+
+                case 3:
+                    nextTrack = track3;
+                    if (activeSource.clip.Equals(nextTrack))
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack3To3));
+                    }
+                    else
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack2To3));
+                    }
+                    break;
+
+                case 4:
+                    nextTrack = track4;
+                    if (activeSource.clip.Equals(nextTrack))
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack4To4));
+                    }
+                    else
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack3To4));
+                    }
+                    break;
+
+                case 5:
+                    nextTrack = track5;
+                    if (activeSource.clip.Equals(nextTrack))
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack5To5));
+                    }
+                    else
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack4To5));
+                    }
+                    break;
+
+                case 6:
+                    nextTrack = track6;
+                    if (activeSource.clip.Equals(nextTrack))
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack6To6));
+                    }
+                    else
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack5To6));
+                    }
+                    break;
+
+                case 7:
+                    nextTrack = track7;
+                    if (activeSource.clip.Equals(nextTrack))
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack7To7));
+                    }
+                    else
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack6To7));
+                    }
+                    break;
+
+                case 8:
+                    nextTrack = track8;
+                    if (activeSource.clip.Equals(nextTrack))
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack8To8));
+                    }
+                    else
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack7To8));
+                    }
+                    break;
+
+                case 9:
+                    print("Ola");
+                    nextTrack = track9;
+                    if (activeSource.clip.Equals(nextTrack))
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack9To9));
+                    }
+                    else
+                    {
+                        StartCoroutine(timerToSwitch(timerTrack8To9));
+                    }
+                    break;
+            }
         }
-        else if(Player.GetComponent<PlayerController>().getPercentageMoved() <= 50 && !isPlaying)     //50%
-        {
-            print("opa");
-            nextTrack = track1;
-            if(activeSource.clip.Equals(nextTrack))
-            {
-                StartCoroutine(timerToSwitch(timerTrack1To1));
-            }
-            else
-            {
-                StartCoroutine(timerToSwitch(timerTrack0To1));
-            }
-            
-        }
-        else if (Player.GetComponent<PlayerController>().getPercentageMoved() <= 75 && !isPlaying)    //75%
-        {
-            nextTrack = track2;
-            if (activeSource.clip.Equals(nextTrack))
-            {
-                StartCoroutine(timerToSwitch(timerTrack2To2));
-            }
-            else
-            {
-                StartCoroutine(timerToSwitch(timerTrack1To2));
-            }
-        }
-        else if(!isPlaying)                                                                             //100%
-        {                                                                         
-            nextTrack = track3;
-            if (activeSource.clip.Equals(nextTrack))
-            {
-                StartCoroutine(timerToSwitch(timerTrack3To3));
-            }
-            else
-            {
-                StartCoroutine(timerToSwitch(timerTrack2To3));
-            }
-        }
+        
+        
     }
 
     public void PlayEffect(int EffectNumber)
@@ -148,13 +234,11 @@ public class SoundController : MonoBehaviour {
         if(switchTracks)
         {
             audioSource2.clip = nextTrack;
-            print("tocando source 2");
             audioSource2.Play();
             switchTracks = false;
         }
         else
         {
-            print("tocando clip 1");
             audioSource1.clip = nextTrack;
             audioSource1.Play();
             switchTracks = true;
@@ -181,5 +265,10 @@ public class SoundController : MonoBehaviour {
         }
 
         return null;
+    }
+
+    public void addCurrentTrackNumber()
+    {
+        currentTrackNumber++;
     }
 }

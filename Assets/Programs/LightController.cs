@@ -14,6 +14,7 @@ public class LightController : MonoBehaviour {
     public float velocidadeInicial = 1f;
     public float aceleration;
     public Animator animation;
+    public SoundController soundController;
 
     //Variaveis auxiliaress
     private Vector3 InicialPosition;
@@ -40,6 +41,7 @@ public class LightController : MonoBehaviour {
         //Quando estão perto o suficiente
         if (Vector3.Distance(transform.position, player.transform.position)< 0.1f) {
             if (destruirLuz.getJaBranco()) {
+                soundController.addCurrentTrackNumber();
                 player.GetComponent<PlayerController>().aumentarVelocidade();
                 Destroy(this.gameObject);
             }       
