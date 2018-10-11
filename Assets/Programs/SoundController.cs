@@ -17,6 +17,12 @@ public class SoundController : MonoBehaviour {
     public AudioClip track1;
     public AudioClip track2;
     public AudioClip track3;
+    public AudioClip track4;
+    public AudioClip track5;
+    public AudioClip track6;
+    public AudioClip track7;
+    public AudioClip track8;
+    public AudioClip track9;
     private AudioClip nextTrack;
     private AudioSource audioSource1;
     private AudioSource audioSource2;
@@ -27,28 +33,27 @@ public class SoundController : MonoBehaviour {
     //Constantes de tempo para o fade in / fade out dos audios
     //Para o loop
     const float timerTrack0To0 = 5.22f;
-    const float timerTrack1To1 = 24.43f;
+    const float timerTrack1To1 = 8.2f;
     const float timerTrack2To2 = 8.2f;
-    const float timerTrack3To3 = 7.1f;
-    const float timerTrack4To4 = 9.55f;
-    const float timerTrack5To5 = 9.36f;
-    const float timerTrack6To6 = 5.82f;
-    const float timerTrack7To7 = 9.96f;
-    const float timerTrack8To8 = 12.83f;
-    const float timerTrack9To9 = 10.51f;
-    const float timerTrack10To10 = 37.6f;
+    const float timerTrack3To3 = 9.55f;
+    const float timerTrack4To4 = 9.36f;
+    const float timerTrack5To5 = 5.82f;
+    const float timerTrack6To6 = 9.96f;
+    const float timerTrack7To7 = 12.83f;
+    const float timerTrack8To8 = 10.51f;
+    const float timerTrack9To9 = 37.6f;
+    //const float timerTrack10To10 = 37.6f;
 
     //Para a próxima faixa
     const float timerTrack0To1 = 5.5f;
-    const float timerTrack1To2 = 25.34f;
-    const float timerTrack2To3 = 8.81f;
-    const float timerTrack3To4 = 7.15f;
-    const float timerTrack4To5 = 9.40f;
-    const float timerTrack5To6 = 9.53f;
-    const float timerTrack6To7 = 5.27f;
-    const float timerTrack7To8 = 9.96f;
-    const float timerTrack8To9 = 12.3f;
-    const float timerTrack9To10 = 10.27f;
+    const float timerTrack1To2 = 8.81f;
+    const float timerTrack2To3 = 7.15f;
+    const float timerTrack3To4 = 9.40f;
+    const float timerTrack4To5 = 9.53f;
+    const float timerTrack5To6 = 5.27f;
+    const float timerTrack6To7 = 9.96f;
+    const float timerTrack7To8 = 12.3f;
+    const float timerTrack8To9 = 10.27f;
 
     private GameObject Player;      //O jogador
 
